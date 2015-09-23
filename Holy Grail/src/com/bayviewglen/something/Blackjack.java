@@ -5,7 +5,7 @@
  * Game created to let users play blackjack on the computer
  * Due Date: December 5th
  */
-package com.bayviewglen.somthing;
+package com.bayviewglen.something;
 
 import java.text.NumberFormat;
 import java.util.Locale;

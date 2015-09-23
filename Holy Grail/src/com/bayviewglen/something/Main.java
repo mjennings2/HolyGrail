@@ -1,4 +1,4 @@
-package com.bayviewglen.somthing;
+package com.bayviewglen.something;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
