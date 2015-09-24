@@ -17,11 +17,19 @@ import javax.swing.JMenuItem;
 import java.awt.Choice;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.Action;
 
 public class Main extends JFrame {
 
 	private JPanel contentPane;
-
+	private JLabel lblP;
+	private int lblPX = 814;
+	private int lblPY = 321;
+	private JTextArea textArea;
+	private final Action action = new SwingAction();
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +46,15 @@ public class Main extends JFrame {
 		});
 	}
 
+	
+	
+	public void movePlayer(JLabel player, int squares, int square, boolean forward){
+		int d = 755 - 731;
+		lblPX -= d;
+		player.setBounds(lblPX, 321, 22, 22);
+			revalidate();
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -64,17 +81,49 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		textArea = new JTextArea();
+		textArea.setBounds(15, 566, 1314, 122);
+		contentPane.add(textArea);
+		
+		JLabel lblCurrentPlayer = new JLabel("Current Player");
+		lblCurrentPlayer.setBounds(1031, 16, 113, 20);
+		contentPane.add(lblCurrentPlayer);
+		
+		JLabel lblPic_1 = new JLabel("pic");
+		lblPic_1.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Trump.png"));
+		lblPic_1.setBounds(1031, 52, 113, 111);
+		contentPane.add(lblPic_1);
+		
+		JLabel lblCard = new JLabel("Card");
+		lblCard.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Ace.png"));
+		lblCard.setBounds(1195, 16, 113, 160);
+		contentPane.add(lblCard);
+		
+		lblP = new JLabel("p1");
+		lblP.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Trump22.png"));
+		lblP.setBounds(754, 321, 22, 22);
+		contentPane.add(lblP);
+		
 		JLabel lblPic = new JLabel("Pic");
 		lblPic.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Holy Grail Hunting or Somthing.png"));
 		lblPic.setBounds(15, 16, 1001, 534);
 		contentPane.add(lblPic);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(15, 566, 1314, 122);
-		contentPane.add(textArea);
-		
-		Button button = new Button("New button");
-		button.setBounds(1105, 10, 91, 27);
-		contentPane.add(button);
+		JButton btnMove = new JButton("Move");
+		btnMove.setAction(action);
+		btnMove.setBounds(1122, 318, 115, 29);
+		contentPane.add(btnMove);
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+			textArea.append("HI");
+			System.out.print("HI");
+			movePlayer(lblP, 1, 1, true);
+			
+		}
 	}
 }
