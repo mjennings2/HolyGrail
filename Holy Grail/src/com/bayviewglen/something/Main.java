@@ -20,6 +20,8 @@ import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 import javax.swing.Action;
 
 public class Main extends JFrame {
@@ -48,7 +50,7 @@ public class Main extends JFrame {
 
 	
 	
-	public void movePlayer(JLabel player, int squares, int square, boolean forward, Square[] s){
+	public void movePlayer(JLabel player, int squares, int square, boolean forward, Square[] s, int currentPlayer){
 		
 		if(forward){
 			player.setBounds(s[square+squares].getX(), s[square+squares].getY(), 22, 22);	
@@ -57,10 +59,39 @@ public class Main extends JFrame {
 			player.setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
 			revalidate();
 		}
-		
-		s[square].r
-		
-		
+		if(s[square].isHub()){
+			ArrayList<Player> temp = null;
+			if(forward){
+				if(!s[square+square].isHub())
+					temp = s[squares+square].getPlayer();
+				for(int i = 0; i < s[square].getPlayer().size(); i++)
+					if(s[square].getPlayer().get(i).getID() == currentPlayer)
+						s[square+squares].addPlayer(s[square].getPlayer().get(i));
+			}else{
+				if(!s[square+square].isHub())
+					temp = s[squares+square].getPlayer();
+				for(int i = 0; i < s[square].getPlayer().size(); i++)
+					if(s[square].getPlayer().get(i).getID() == currentPlayer)
+						s[square-squares].addPlayer(s[square].getPlayer().get(i));
+				
+			}
+			s[square].clearPlayer(0);	
+			s[square].setPlayers(temp);
+			
+		}else{
+			ArrayList<Player> temp = null;
+			if(forward){
+				if(!s[square+square].isHub())
+					temp = s[squares+square].getPlayer();
+				s[square+squares].addPlayer(s[square].getPlayer().get(0));
+			}else{
+				if(!s[square+square].isHub())
+					temp = s[squares+square].getPlayer();
+				s[square-squares].addPlayer(s[square].getPlayer().get(0));
+			}
+			s[square].clearPlayer(0);
+			s[square].setPlayers(temp);
+		}
 	}
 	
 	/**

@@ -6,14 +6,15 @@ public class Player {
 	private String name;
 	private boolean didNothing;
 	private boolean atEnd;
+	private int playerID;
 	
-	public Player(String colour, String name, boolean didNothing, boolean atEnd) {
+	public Player(String colour, String name, boolean didNothing, boolean atEnd, int playerID) {
 		
 		this.colour = colour;
 		this.name = name;
 		this.didNothing = didNothing;
 		this.atEnd = atEnd;
-		
+		this.playerID = playerID;
 	}
 	
 	public String getColour () {
@@ -22,6 +23,10 @@ public class Player {
 	
 	public void setColour (String colour) {
 		this.colour = colour;
+	}
+	
+	public int getID() {
+		return this.playerID;
 	}
 	
 	public String getName () {

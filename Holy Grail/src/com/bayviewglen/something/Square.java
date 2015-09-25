@@ -46,6 +46,12 @@ public class Square {
 		return this.y;
 	}
 	
+	public void setPlayers(ArrayList<Player> plasyers){
+		
+		this.players = players;
+		
+	}
+	
 	public ArrayList<Player> getPlayer () {
 		return this.players;
 	}
@@ -53,6 +59,10 @@ public class Square {
 	public void addPlayer (Player[] player) {
 		for(int i = 0; i < player.length; i++)
 			players.add(player[i]);
+	}
+	
+	public void addPlayer (Player player) {
+		players.add(player);
 	}
 	
 	public boolean isChance () {
