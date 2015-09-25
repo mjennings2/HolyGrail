@@ -161,7 +161,7 @@ public class Main extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			textArea.append("HI");
 			System.out.print("HI");
-			movePlayer(lblP, 1, 1, true, null);
+			movePlayer(lblP, 1, 1, true, null, 0);
 			
 		}
 	}
