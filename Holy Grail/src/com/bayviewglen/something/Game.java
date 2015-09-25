@@ -1,9 +1,15 @@
 package com.bayviewglen.something;
 
 public class Game {
-
-	public Game() {
-		// TODO Auto-generated constructor stub
+	
+	private Board board;
+	private Player[] players;
+	private int goesFirst;
+	
+	public Game(Board board, Player[] players, int goesFirst) {
+		this.board = board;
+		this.players = players;
+		this.goesFirst = goesFirst;
 	}
 
 }

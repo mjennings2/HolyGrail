@@ -3,6 +3,7 @@ package com.bayviewglen.something;
 public class Board {
 
 	public Board() {
+<<<<<<< HEAD
 		Square[] squares = new Square[72]; 
 		squares[0]= new Square (756,321);
 		squares[1]= new Square (732,321);
@@ -77,6 +78,8 @@ public class Board {
 		squares[70]= new Square (129,392);
 		squares[71]= new Square (71,392);
 		squares[72]= new Square (814,371);
+=======
+>>>>>>> branch 'master' of https://github.com/mjennings2/HolyGrail.git
 		
 	}
 
