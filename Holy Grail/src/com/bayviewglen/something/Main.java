@@ -48,11 +48,18 @@ public class Main extends JFrame {
 
 	
 	
-	public void movePlayer(JLabel player, int squares, int square, boolean forward){
-		int d = 755 - 731;
-		lblPX -= d;
-		player.setBounds(lblPX, 321, 22, 22);
+	public void movePlayer(JLabel player, int squares, int square, boolean forward, Square[] s){
+		
+		if(forward){
+			player.setBounds(s[square+squares].getX(), s[square+squares].getY(), 22, 22);	
 			revalidate();
+		}else{
+			player.setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
+			revalidate();
+		}
+		
+		
+		
 	}
 	
 	/**
@@ -90,22 +97,22 @@ public class Main extends JFrame {
 		contentPane.add(lblCurrentPlayer);
 		
 		JLabel lblPic_1 = new JLabel("pic");
-		lblPic_1.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Trump.png"));
+		lblPic_1.setIcon(new ImageIcon("input/pictures/Trump.png"));
 		lblPic_1.setBounds(1031, 52, 113, 111);
 		contentPane.add(lblPic_1);
 		
 		JLabel lblCard = new JLabel("Card");
-		lblCard.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Ace.png"));
+		lblCard.setIcon(new ImageIcon("input/pictures/Ace.png"));
 		lblCard.setBounds(1195, 16, 113, 160);
 		contentPane.add(lblCard);
 		
 		lblP = new JLabel("p1");
-		lblP.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Icons\\Trump22.png"));
+		lblP.setIcon(new ImageIcon("input/pictures/Trump22.png"));
 		lblP.setBounds(754, 321, 22, 22);
 		contentPane.add(lblP);
 		
 		JLabel lblPic = new JLabel("Pic");
-		lblPic.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\Holy Grail Hunting or Somthing.png"));
+		lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
 		lblPic.setBounds(15, 16, 1001, 534);
 		contentPane.add(lblPic);
 		
@@ -122,7 +129,7 @@ public class Main extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			textArea.append("HI");
 			System.out.print("HI");
-			movePlayer(lblP, 1, 1, true);
+			movePlayer(lblP, 1, 1, true, null);
 			
 		}
 	}

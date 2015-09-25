@@ -1,18 +1,21 @@
 package com.bayviewglen.something;
 
+import java.util.ArrayList;
+
 public class Square {
 
 	private int x;
 	private int y;
-	private Player[] players;
+	private ArrayList<Player> players = new ArrayList<Player>();
 	private boolean isChance;
 	private boolean isHub;
 	private boolean isEnd;
 	
-	public Square(int xCoord, int yCoord, Player[] player, boolean isChance, boolean isHub, boolean isEnd, Player[] players) {
+	public Square(int xCoord, int yCoord, Player[] player, boolean isChance, boolean isHub, boolean isEnd) {
 		this.x = xCoord;
 		this.y = yCoord;
-		this.players = players;
+		for(int i = 0; i < player.length; i++)
+			players.add(player[i]);
 		this.isChance = isChance;
 		this.isHub = isHub;
 		this.isEnd = isEnd;
@@ -22,11 +25,17 @@ public class Square {
 	public Square(int xCoord, int yCoord, boolean isChance, boolean isHub, boolean isEnd) {
 		this.x = xCoord;
 		this.y = yCoord;
-		this.players = null;
 		this.isChance = isChance;
 		this.isHub = isHub;
 		this.isEnd = isEnd;
 		
+	}
+	
+	public void clearPlayer(int x){
+		if(isHub)
+			this.players.remove(x);
+		else
+			this.players.remove(0);
 	}
 	
 	public int getX () {
@@ -37,12 +46,13 @@ public class Square {
 		return this.y;
 	}
 	
-	public Player[] getPlayer () {
+	public ArrayList<Player> getPlayer () {
 		return this.players;
 	}
 	
-	public void setPlayer (Player[] players) {
-		this.players = players;
+	public void addPlayer (Player[] player) {
+		for(int i = 0; i < player.length; i++)
+			players.add(player[i]);
 	}
 	
 	public boolean isChance () {
