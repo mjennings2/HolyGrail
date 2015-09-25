@@ -58,6 +58,7 @@ public class Main extends JFrame {
 			revalidate();
 		}
 		
+		s[square].r
 		
 		
 	}
