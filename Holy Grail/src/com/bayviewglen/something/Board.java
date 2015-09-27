@@ -69,7 +69,6 @@ public class Board {
 		squares[61]= new Square (291,367);
 		squares[62]= new Square (268,392);
 		squares[63]= new Square (244,392);
-		squares[64]= new Square (222,392);
 		squares[65]= new Square (244,392);
 		squares[66]= new Square (222,392);
 		squares[67]= new Square (197,392);
