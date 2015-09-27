@@ -27,19 +27,21 @@ import javax.swing.Action;
 public class Main extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel lblP;
+	private JLabel lblP[] = new JLabel[8];
+	private JLabel lblPic_1;
 	private int lblPX = 814;
 	private int lblPY = 321;
 	private JTextArea textArea;
+	private JLabel lbli;
 	private final Action action = new SwingAction();
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable()    {
 			public void run() {
 				try {
-					Main frame = new Main();
+					Main frame = new Main(0, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,15 +50,40 @@ public class Main extends JFrame {
 		});
 	}
 
+	public void oneTurn(Player p, Square[] s){
+		lblPic_1.setIcon(new ImageIcon(p.getColour()));
+		int i = (int) (Math.random() * 5) + 1;
+		
+		if(i == 1){
+			lbli.setIcon(new ImageIcon("input/pictures/Ace.png"));
+		}else if(i == 2){
+			lbli.setIcon(new ImageIcon("input/pictures/Two.png"));
+		}else if(i == 3){
+			lbli.setIcon(new ImageIcon("input/pictures/Three.png"));
+		}else if(i == 4){
+			lbli.setIcon(new ImageIcon("input/pictures/Four.png"));
+		}else if(i == 5){
+			lblP[i].setIcon(new ImageIcon("input/pictures/Trump22.png"));
+		}
+		
+		movePlayer(i,p.getCurrentSquare(), true, s, p.getID());
+		
+		if(s[p.getCurrentSquare()].isChance()){
+			
+			
+			
+			
+		}
+		
+	}
 	
-	
-	public void movePlayer(JLabel player, int squares, int square, boolean forward, Square[] s, int currentPlayer){
+	public void movePlayer(int squares, int square, boolean forward, Square[] s, int currentPlayer){
 		
 		if(forward){
-			player.setBounds(s[square+squares].getX(), s[square+squares].getY(), 22, 22);	
+			lblP[currentPlayer].setBounds(s[square+squares].getX(), s[square+squares].getY(), 22, 22);	
 			revalidate();
 		}else{
-			player.setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
+			lblP[currentPlayer].setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
 			revalidate();
 		}
 		if(s[square].isHub()){
@@ -97,7 +124,7 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
+	public Main(int numberOfPlayers, Player[] p) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 760);
 		
@@ -128,20 +155,24 @@ public class Main extends JFrame {
 		lblCurrentPlayer.setBounds(1031, 16, 113, 20);
 		contentPane.add(lblCurrentPlayer);
 		
-		JLabel lblPic_1 = new JLabel("pic");
+		lblPic_1 = new JLabel("pic");
 		lblPic_1.setIcon(new ImageIcon("input/pictures/Trump.png"));
 		lblPic_1.setBounds(1031, 52, 113, 111);
 		contentPane.add(lblPic_1);
 		
-		JLabel lblCard = new JLabel("Card");
-		lblCard.setIcon(new ImageIcon("input/pictures/Ace.png"));
-		lblCard.setBounds(1195, 16, 113, 160);
-		contentPane.add(lblCard);
+		lbli = new JLabel("i");
 		
-		lblP = new JLabel("p1");
-		lblP.setIcon(new ImageIcon("input/pictures/Trump22.png"));
-		lblP.setBounds(754, 321, 22, 22);
-		contentPane.add(lblP);
+		lbli.setBounds(1195, 16, 113, 160);
+		contentPane.add(lbli);
+		
+		
+		for(int i=0; i<numberOfPlayers; i++){
+		lblP[i] = new JLabel("p1");
+		lblP[i].setIcon(new ImageIcon(p[i].getColour()));
+		lblP[i].setBounds(754, 321, 22, 22);
+		contentPane.add(lblP[i]);
+		
+		}
 		
 		JLabel lblPic = new JLabel("Pic");
 		lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
@@ -161,7 +192,7 @@ public class Main extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			textArea.append("HI");
 			System.out.print("HI");
-			movePlayer(lblP, 1, 1, true, null, 0);
+			
 			
 		}
 	}

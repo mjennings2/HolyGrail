@@ -39,6 +39,10 @@ public class Intro extends JFrame {
 	 * Create the frame.
 	 */
 	public Intro() {
+		initialize();
+	}
+	
+	private void initialize(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1244, 586);
 		contentPane = new JPanel();
@@ -55,11 +59,16 @@ public class Intro extends JFrame {
 		btnStart.setBounds(526, 266, 185, 88);
 		contentPane.add(btnStart);
 		
+		JButton btnHowToPlay = new JButton("How To Play");
+		btnHowToPlay.setBounds(1084, 485, 123, 29);
+		contentPane.add(btnHowToPlay);
+		
 		JLabel lblD = new JLabel("d");
 		lblD.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\intro.png"));
 		lblD.setBounds(0, 0, 1222, 530);
 		contentPane.add(lblD);
 	}
+	
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "Start");
