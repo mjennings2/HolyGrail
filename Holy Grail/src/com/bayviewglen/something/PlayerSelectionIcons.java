@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 public class PlayerSelectionIcons {
 	private JLabel lblPlayerPlease;
-	private JFrame frame;
+	public JFrame frame;
 	private JLabel lblHi;
 	boolean wait;
 	int iconUsed;
@@ -56,10 +56,13 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[0]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
 					p[playerChooseing].setColour("input/pictures/Trump.png");
 					p[playerChooseing].setColourSmall("input/pictures/Trump22.png");
+					used[0] = true;
 					wait = true;
+					
 				}
 				
 			}
@@ -73,7 +76,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent arg0) {
 				if(used[1]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[1] = true;
 					p[playerChooseing].setColour("input/pictures/Queen.png");
 					p[playerChooseing].setColourSmall("input/pictures/Queen22.png");
 					wait = true;
@@ -89,7 +94,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[2]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[2] = true;
 					p[playerChooseing].setColour("input/pictures/Berlusconi.png");
 					p[playerChooseing].setColourSmall("input/pictures/Berlusconi22.png");
 					wait = true;
@@ -105,7 +112,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[3]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[3] = true;
 					p[playerChooseing].setColour("input/pictures/Dilma.png");
 					p[playerChooseing].setColourSmall("input/pictures/Dilma22.png");
 					wait = true;
@@ -121,7 +130,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[4]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[4] = true;
 					p[playerChooseing].setColour("input/pictures/Kim_jong-un.png");
 					p[playerChooseing].setColourSmall("input/pictures/Kim_jong-un22.png");
 					wait = true;
@@ -137,7 +148,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[5]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[5] = true;
 					p[playerChooseing].setColour("input/pictures/Hollande.png");
 					p[playerChooseing].setColourSmall("input/pictures/Hollande22.png");
 					wait = true;
@@ -153,7 +166,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[6]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[6] = true;
 					p[playerChooseing].setColour("input/pictures/Obama.png");
 					p[playerChooseing].setColourSmall("input/pictures/Obama22.png");
 					wait = true;
@@ -169,7 +184,9 @@ public class PlayerSelectionIcons {
 			public void actionPerformed(ActionEvent e) {
 				if(used[7]){
 					lblHi.setText("Sorry but that icon is in use. Please choose a different icon.");
+					frame.revalidate();
 				}else{
+					used[7] = true;
 					p[playerChooseing].setColour("input/pictures/Putin.png");
 					p[playerChooseing].setColourSmall("input/pictures/Putin22.png");
 					wait = true;
@@ -195,7 +212,7 @@ public class PlayerSelectionIcons {
 		
 		for(int i = 0; i < p.length; i++){
 			
-			lblPlayerPlease.setText("Player " + i+1 + ", Please select your Icon");
+			lblPlayerPlease.setText("Player " + (i+1) + ", Please select your Icon");
 			frame.revalidate();
 			playerChooseing = i;
 			while(!wait){
@@ -207,7 +224,7 @@ public class PlayerSelectionIcons {
 				}
 			}
 			wait = false;	
-			frame.setVisible(false);
+			
 		}
 		
 	}

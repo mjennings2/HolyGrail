@@ -26,7 +26,7 @@ import javax.swing.Action;
 
 public class Main extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	private JLabel lblP[] = new JLabel[8];
 	private JLabel lblPic_1;
 	private int lblPX = 814;
@@ -122,6 +122,7 @@ public class Main extends JFrame {
 						s[square-squares].addPlayer(s[square].getPlayer().get(i));
 				
 			}
+			if(s[square].)
 			s[square].clearPlayer(0);	
 			s[square].setPlayers(temp);
 			
@@ -147,25 +148,7 @@ public class Main extends JFrame {
 	public Main(int numberOfPlayers, Player[] p, Square[] s) {
 		
 		
-		int x = 0;
-		for(int i = 0; i < s.length; i++){
-			
-			JLabel lblPic = new JLabel("Pic");
-			lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
-			lblPic.setBounds(15, 16, 1001, 534);
-			contentPane.add(lblPic);
-			
-			if((int) (Math.random()*10) == 1){
-				
-				chance[x] = new JLabel("");
-				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
-				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
-				contentPane.add(chance[x]);
-				x++;
-				
-			}
-			
-		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 760);
@@ -188,6 +171,28 @@ public class Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblPic = new JLabel("Pic");
+		lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
+		lblPic.setBounds(15, 16, 1001, 534);
+		contentPane.add(lblPic);
+		
+		int x = 0;
+		for(int i = 0; i < s.length; i++){
+			
+			
+			
+			if((int) (Math.random()*10) == 1){
+				
+				chance[x] = new JLabel("");
+				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
+				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
+				contentPane.add(chance[x]);
+				x++;
+				
+			}
+			
+		}
 		
 		textArea = new JTextArea();
 		textArea.setBounds(15, 566, 1314, 122);

@@ -11,18 +11,18 @@ public class Square {
 	private boolean isHub;
 	private boolean isEnd;
 	
-	public Square(int xCoord, int yCoord, Player[] player, boolean isChance, boolean isHub, boolean isEnd) {
+	public Square(int xCoord, int yCoord, Player[] player, boolean isHub, boolean isEnd) {
 		this.x = xCoord;
 		this.y = yCoord;
 		for(int i = 0; i < player.length; i++)
 			players.add(player[i]);
-		this.isChance = isChance;
+		this.isChance = false;
 		this.isHub = isHub;
 		this.isEnd = isEnd;
 		
 	}
 	
-	public Square(int xCoord, int yCoord, boolean isChance, boolean isHub, boolean isEnd) {
+	public Square(int xCoord, int yCoord, boolean isHub, boolean isEnd) {
 		this.x = xCoord;
 		this.y = yCoord;
 		this.isChance = isChance;

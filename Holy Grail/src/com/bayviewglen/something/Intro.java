@@ -18,6 +18,8 @@ public class Intro extends JFrame {
 
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
+	private boolean wait;
+	
 
 	/**
 	 * Launch the application.
@@ -64,7 +66,7 @@ public class Intro extends JFrame {
 		contentPane.add(btnHowToPlay);
 		
 		JLabel lblD = new JLabel("d");
-		lblD.setIcon(new ImageIcon("C:\\Users\\mathe_000\\Desktop\\intro.png"));
+		lblD.setIcon(new ImageIcon("input/pictures/intro.png"));
 		lblD.setBounds(0, 0, 1222, 530);
 		contentPane.add(lblD);
 	}
@@ -77,7 +79,23 @@ public class Intro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			setVisible(false);
+			wait = true;
 			
 		}
+	}
+	
+public int loop(){
+		
+		while(!wait){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		wait = false;
+		return 0;
+	
 	}
 }

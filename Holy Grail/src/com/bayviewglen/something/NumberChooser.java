@@ -115,6 +115,6 @@ public class NumberChooser {
 		frame.setVisible(false);
 		return number;
 	
-}
+	}
 
 }
