@@ -146,11 +146,17 @@ public class CurrentPlayers {
 	
 	public int getPlayer(Player[] p){
 		
-			while(!wait){
-				
+		while(!wait){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			wait = false;	
-			return playerChose;
+		}
+		wait = false;	
+		frame.setVisible(false);
+		return playerChose;
 		
 	}
 }

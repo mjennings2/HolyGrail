@@ -33,6 +33,7 @@ public class Main extends JFrame {
 	private int lblPY = 321;
 	private JTextArea textArea;
 	private JLabel lbli;
+	private JLabel chance[] = new JLabel[100];
 	private final Action action = new SwingAction();
 	/**
 	 * Launch the application.
@@ -41,8 +42,8 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(new Runnable()    {
 			public void run() {
 				try {
-					Main frame = new Main(0, null);
-					frame.setVisible(true);
+				//	Main frame = new Main(0, null);
+				//	frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,8 +51,8 @@ public class Main extends JFrame {
 		});
 	}
 
-	public void oneTurn(Player p, Square[] s){
-		lblPic_1.setIcon(new ImageIcon(p.getColour()));
+	public void oneTurn(Player p1, Square[] s,Player[] p){
+		lblPic_1.setIcon(new ImageIcon(p1.getColour()));
 		int i = (int) (Math.random() * 5) + 1;
 		
 		if(i == 1){
@@ -66,13 +67,32 @@ public class Main extends JFrame {
 			lblP[i].setIcon(new ImageIcon("input/pictures/Trump22.png"));
 		}
 		
-		movePlayer(i,p.getCurrentSquare(), true, s, p.getID());
-		
-		if(s[p.getCurrentSquare()].isChance()){
+		movePlayer(i,p1.getCurrentSquare(), true, s, p1.getID());
+		boolean loop = true;
+		while(loop){
+		if(s[p1.getCurrentSquare()].isChance()){
 			
+			textArea.append("You have landed on a chance square.");
+			CurrentPlayers c = new CurrentPlayers(p);
+			int player = c.getPlayer(p);
+			NumberChooser c1 = new NumberChooser();
+			int numberOfSquares = c1.getNumber();
+			int forwardOrBackward = (int) (Math.random() * 2) + 1;
+			if(forwardOrBackward == 1){
+				lbli.setIcon(new ImageIcon("input/pictures/Forward.png"));
+			}else{
+				lbli.setIcon(new ImageIcon("input/pictures/Backward.png"));
+			}
 			
+			movePlayer(numberOfSquares, p[player].getCurrentSquare(), forwardOrBackward == 1, s, player);
 			
+			if(!(p1.getID() == p[player].getID())){
+				loop = false;
+			}
 			
+		}else{
+			loop = false;
+		}
 		}
 		
 	}
@@ -124,7 +144,29 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main(int numberOfPlayers, Player[] p) {
+	public Main(int numberOfPlayers, Player[] p, Square[] s) {
+		
+		
+		int x = 0;
+		for(int i = 0; i < s.length; i++){
+			
+			JLabel lblPic = new JLabel("Pic");
+			lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
+			lblPic.setBounds(15, 16, 1001, 534);
+			contentPane.add(lblPic);
+			
+			if((int) (Math.random()*10) == 1){
+				
+				chance[x] = new JLabel("");
+				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
+				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
+				contentPane.add(chance[x]);
+				x++;
+				
+			}
+			
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 760);
 		
@@ -174,10 +216,7 @@ public class Main extends JFrame {
 		
 		}
 		
-		JLabel lblPic = new JLabel("Pic");
-		lblPic.setIcon(new ImageIcon("input/pictures/Holy Grail Hunting or Somthing.png"));
-		lblPic.setBounds(15, 16, 1001, 534);
-		contentPane.add(lblPic);
+		
 		
 		JButton btnMove = new JButton("Move");
 		btnMove.setAction(action);

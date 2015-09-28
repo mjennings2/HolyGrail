@@ -199,9 +199,15 @@ public class PlayerSelectionIcons {
 			frame.revalidate();
 			playerChooseing = i;
 			while(!wait){
-				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			wait = false;			
+			wait = false;	
+			frame.setVisible(false);
 		}
 		
 	}
