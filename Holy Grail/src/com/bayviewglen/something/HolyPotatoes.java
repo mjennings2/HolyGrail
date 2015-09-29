@@ -30,7 +30,14 @@ public class HolyPotatoes {
 	
 		while(true){
 			for(int i = 0; i < p.length; i++){
-				x.oneTurn(p[i], board.squares, p);			
+				x.oneTurn(p[i], board.squares, p);	
+				
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		

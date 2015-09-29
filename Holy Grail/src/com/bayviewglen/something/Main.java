@@ -55,27 +55,34 @@ public class Main extends JFrame {
 		lblPic_1.setIcon(new ImageIcon(p1.getColour()));
 		int i = (int) (Math.random() * 5) + 1;
 		
-		if(i == 1){
+		if(i == 1){ 	
 			lbli.setIcon(new ImageIcon("input/pictures/Ace.png"));
+			p1.setCurrentSquare(p1.getCurrentSquare()+i);
 		}else if(i == 2){
 			lbli.setIcon(new ImageIcon("input/pictures/Two.png"));
+			p1.setCurrentSquare(p1.getCurrentSquare()+i);
 		}else if(i == 3){
 			lbli.setIcon(new ImageIcon("input/pictures/Three.png"));
+			p1.setCurrentSquare(p1.getCurrentSquare()+i);
 		}else if(i == 4){
 			lbli.setIcon(new ImageIcon("input/pictures/Four.png"));
+			p1.setCurrentSquare(p1.getCurrentSquare()+i);
 		}else if(i == 5){
-			lblP[i].setIcon(new ImageIcon("input/pictures/Trump22.png"));
+			lbli.setIcon(new ImageIcon("input/pictures/Five.png"));
+			p1.setCurrentSquare(p1.getCurrentSquare()+i);
 		}
 		
-		movePlayer(i,p1.getCurrentSquare(), true, s, p1.getID());
+		movePlayer(i,p1.getCurrentSquare()-i, true, s, p1.getID());
 		boolean loop = true;
 		while(loop){
 		if(s[p1.getCurrentSquare()].isChance()){
-			
+			System.out.println("Hi");
 			textArea.append("You have landed on a chance square.");
 			CurrentPlayers c = new CurrentPlayers(p);
-			int player = c.getPlayer(p);
+			c.frame.setVisible(true);
+			int player = c.getPlayer(p)-1;
 			NumberChooser c1 = new NumberChooser();
+			c1.frame.setVisible(true);
 			int numberOfSquares = c1.getNumber();
 			int forwardOrBackward = (int) (Math.random() * 2) + 1;
 			if(forwardOrBackward == 1){
@@ -89,6 +96,9 @@ public class Main extends JFrame {
 			if(!(p1.getID() == p[player].getID())){
 				loop = false;
 			}
+			
+			c1.frame.setVisible(false);
+			c.frame.setVisible(false);
 			
 		}else{
 			loop = false;
@@ -122,14 +132,14 @@ public class Main extends JFrame {
 						s[square-squares].addPlayer(s[square].getPlayer().get(i));
 				
 			}
-			if(s[square].)
-			s[square].clearPlayer(0);	
-			s[square].setPlayers(temp);
+			if(s[square].players.size() != 0)
+				s[square].clearPlayer(0);	
+				s[square].setPlayers(temp);
 			
 		}else{
 			ArrayList<Player> temp = null;
 			if(forward){
-				if(!s[square+square].isHub())
+				if(!s[square+squares].isHub())
 					temp = s[squares+square].getPlayer();
 				s[square+squares].addPlayer(s[square].getPlayer().get(0));
 			}else{
@@ -182,14 +192,14 @@ public class Main extends JFrame {
 			
 			
 			
-			if((int) (Math.random()*10) == 1){
+			if((int) (Math.random()*100)+1 <= 25){
 				
 				chance[x] = new JLabel("");
 				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
 				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
 				contentPane.add(chance[x]);
 				x++;
-				
+				s[i].setIsChance(true);
 			}
 			
 		}
@@ -214,10 +224,10 @@ public class Main extends JFrame {
 		
 		
 		for(int i=0; i<numberOfPlayers; i++){
-		lblP[i] = new JLabel("p1");
-		lblP[i].setIcon(new ImageIcon(p[i].getColour()));
-		lblP[i].setBounds(754, 321, 22, 22);
-		contentPane.add(lblP[i]);
+			lblP[i] = new JLabel("p1");
+			lblP[i].setIcon(new ImageIcon(p[i].getColourSmall()));
+			lblP[i].setBounds(814,371, 22, 22);
+			contentPane.add(lblP[i]);
 		
 		}
 		
@@ -227,6 +237,7 @@ public class Main extends JFrame {
 		btnMove.setAction(action);
 		btnMove.setBounds(1122, 318, 115, 29);
 		contentPane.add(btnMove);
+		contentPane.add(lblPic);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {

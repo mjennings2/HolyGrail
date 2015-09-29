@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 public class CurrentPlayers {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JButton btns[] = new JButton[8];
 	private int playerChose;
 	private boolean wait;

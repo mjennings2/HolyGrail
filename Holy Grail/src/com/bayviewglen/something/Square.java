@@ -6,7 +6,7 @@ public class Square {
 
 	private int x;
 	private int y;
-	private ArrayList<Player> players = new ArrayList<Player>();
+	public ArrayList<Player> players = new ArrayList<Player>();
 	private boolean isChance;
 	private boolean isHub;
 	private boolean isEnd;
@@ -67,6 +67,10 @@ public class Square {
 	
 	public boolean isChance () {
 		return this.isChance;
+	}
+	
+	public void setIsChance(boolean x){
+		isChance = x;
 	}
 	
 	public boolean isHub () {
