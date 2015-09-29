@@ -50,7 +50,7 @@ public class CurrentPlayers {
 		for(int i = 0; i < p.length; i++){
 			btns[i] = new JButton("");
 			btns[i].setBounds(15 + (i * 126), 52, 111, 111);
-			//btns[i].setIcon(new ImageIcon(p[i].getColour()));
+			btns[i].setIcon(new ImageIcon(p[i].getColour()));
 			frame.getContentPane().add(btns[i]);
 			
 		}

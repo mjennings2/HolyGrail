@@ -217,7 +217,7 @@ public class PlayerSelectionIcons {
 			playerChooseing = i;
 			while(!wait){
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -226,6 +226,7 @@ public class PlayerSelectionIcons {
 			wait = false;	
 			
 		}
+		frame.setVisible(false);
 		
 	}
 }

@@ -119,7 +119,7 @@ public class Main extends JFrame {
 		if(s[square].isHub()){
 			ArrayList<Player> temp = null;
 			if(forward){
-				if(!s[square+square].isHub())
+				if(!s[squares+square].isHub())
 					temp = s[squares+square].getPlayer();
 				for(int i = 0; i < s[square].getPlayer().size(); i++)
 					if(s[square].getPlayer().get(i).getID() == currentPlayer)
@@ -187,22 +187,7 @@ public class Main extends JFrame {
 		lblPic.setBounds(15, 16, 1001, 534);
 		contentPane.add(lblPic);
 		
-		int x = 0;
-		for(int i = 0; i < s.length; i++){
-			
-			
-			
-			if((int) (Math.random()*100)+1 <= 25){
-				
-				chance[x] = new JLabel("");
-				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
-				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
-				contentPane.add(chance[x]);
-				x++;
-				s[i].setIsChance(true);
-			}
-			
-		}
+		
 		
 		textArea = new JTextArea();
 		textArea.setBounds(15, 566, 1314, 122);
@@ -230,7 +215,22 @@ public class Main extends JFrame {
 			contentPane.add(lblP[i]);
 		
 		}
-		
+		int x = 0;
+		for(int i = 0; i < s.length; i++){
+			
+			
+			
+			if((int) (Math.random()*100)+1 <= 25){
+				
+				chance[x] = new JLabel("");
+				chance[x].setIcon(new ImageIcon("input/pictures/chance.png"));
+				chance[x].setBounds(s[i].getX(), s[i].getY(), 22, 22);
+				contentPane.add(chance[x]);
+				x++;
+				s[i].setIsChance(true);
+			}
+			
+		}
 		
 		
 		JButton btnMove = new JButton("Move");
