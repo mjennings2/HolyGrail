@@ -30,11 +30,12 @@ public class HolyPotatoes {
 	
 		while(true){
 			for(int i = 0; i < p.length; i++){
+				x.waiter();
 				x.oneTurn(p[i], board.squares, p);	
 				
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

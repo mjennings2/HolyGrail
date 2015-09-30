@@ -34,6 +34,7 @@ public class Main extends JFrame {
 	private JTextArea textArea;
 	private JLabel lbli;
 	private JLabel chance[] = new JLabel[100];
+	private boolean wait;
 	private final Action action = new SwingAction();
 	/**
 	 * Launch the application.
@@ -80,7 +81,7 @@ public class Main extends JFrame {
 			textArea.append("You have landed on a chance square.");
 			CurrentPlayers c = new CurrentPlayers(p);
 			c.frame.setVisible(true);
-			int player = c.getPlayer(p)-1;
+			int player = c.getPlayer(p);
 			NumberChooser c1 = new NumberChooser();
 			c1.frame.setVisible(true);
 			int numberOfSquares = c1.getNumber();
@@ -143,7 +144,7 @@ public class Main extends JFrame {
 					temp = s[squares+square].getPlayer();
 				s[square+squares].addPlayer(s[square].getPlayer().get(0));
 			}else{
-				if(!s[square+square].isHub())
+				if(!s[squares+square].isHub())
 					temp = s[squares+square].getPlayer();
 				s[square-squares].addPlayer(s[square].getPlayer().get(0));
 			}
@@ -239,16 +240,26 @@ public class Main extends JFrame {
 		contentPane.add(btnMove);
 		contentPane.add(lblPic);
 	}
+	public void waiter(){
+		while(!wait){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		wait=false;
+	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
-			putValue(NAME, "SwingAction");
+			putValue(NAME, "DO ACTION");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
-			textArea.append("HI");
-			System.out.print("HI");
-			
-			
+			wait = true;
 		}
+		
 	}
+	
 }
