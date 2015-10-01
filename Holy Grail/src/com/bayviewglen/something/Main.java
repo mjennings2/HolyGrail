@@ -94,6 +94,12 @@ public class Main extends JFrame {
 			
 			movePlayer(numberOfSquares, p[player].getCurrentSquare(), forwardOrBackward == 1, s, player);
 			
+			if(forwardOrBackward == 1){
+				p[player].setCurrentSquare(p[player].getCurrentSquare() + numberOfSquares);
+			}else{
+				p[player].setCurrentSquare(p[player].getCurrentSquare() - numberOfSquares);
+			}
+			
 			if(!(p1.getID() == p[player].getID())){
 				loop = false;
 			}
@@ -141,13 +147,14 @@ public class Main extends JFrame {
 			ArrayList<Player> temp = null;
 			if(forward){
 				if(!s[square+squares].isHub())
-					temp = s[squares+square].getPlayer();
+					temp = s[square+squares].getPlayer();
 				s[square+squares].addPlayer(s[square].getPlayer().get(0));
 			}else{
-				if(!s[squares+square].isHub())
-					temp = s[squares+square].getPlayer();
+				if(!s[square-squares].isHub())
+					temp = s[square-squares].getPlayer();
 				s[square-squares].addPlayer(s[square].getPlayer().get(0));
 			}
+			
 			s[square].clearPlayer(0);
 			s[square].setPlayers(temp);
 		}
