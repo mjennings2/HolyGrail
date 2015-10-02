@@ -38,9 +38,9 @@ public class Board {
 		squares[28]= new Square (453,272, false, false);
 		squares[29]= new Square (430,272, false, false);
 		squares[30]= new Square (408,272, false, false);
-		squares[31]= new Square (383,272, false, false);
+		squares[31]= new Square (383,272, true, false);
 		squares[32]= new Square (383,296, false, false);
-		squares[33]= new Square (383,392, true, false);
+		squares[33]= new Square (383,392, false, false);
 		squares[34]= new Square (383,416, false, false);
 		squares[35]= new Square (383,442, false, false);
 		squares[36]= new Square (383,465, false, false);

@@ -26,6 +26,9 @@ import javax.swing.Action;
 
 public class Main extends JFrame {
 
+	private static final int BRIDGE_INT = 31;
+	private static final int LONGPATHSTART_INT = 43;
+	private static final int ENDPATHSTART_INT = 63;
 	public JPanel contentPane;
 	private JLabel lblP[] = new JLabel[8];
 	private JLabel lblPic_1;
@@ -116,11 +119,24 @@ public class Main extends JFrame {
 	
 	public void movePlayer(int squares, int square, boolean forward, Square[] s, int currentPlayer){
 		
+		boolean onShortPath = (square>BRIDGE_INT&&square<LONGPATHSTART_INT);
+		if(square==BRIDGE_INT){
+			boolean takeShortPath;	
+			takeShortPath = getShortOrNot();	
+			if(!takeShortPath)
+				squares=+LONGPATHSTART_INT-BRIDGE_INT;
+			/*else{
+				Blackjack game = new Blackjack();	
+				squares=game.playBlackJack("Player " + (currentPlayer+1));
+			}*/
+		}
 		
-		
+		if(forward&&onShortPath&&square+squares>=LONGPATHSTART_INT)
+			squares+=ENDPATHSTART_INT-LONGPATHSTART_INT;
+			
 		for(int i = squares; i>0; i--){
 			if(forward){
-				if(s[square+i].isEnd()||s[square+i].isHub()||s[square-i].isEnd())				
+				if(s[square+i].isEnd()||s[square+i].isHub()||s[square+i].isEnd())				
 					squares = i;
 			}
 			else{
@@ -128,6 +144,8 @@ public class Main extends JFrame {
 					squares = i;
 			}
 		}
+		
+		
 		
 		if(s[square].isHub()){
 			ArrayList<Player> temp = null;
@@ -173,6 +191,11 @@ public class Main extends JFrame {
 		}
 	}
 	
+	private boolean getShortOrNot() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	/**
 	 * Create the frame.
 	 */

@@ -30,6 +30,11 @@ public class Blackjack {
     public static int TOTAL_CARDS_PER_SUITE = 13;
     public static int TOTAL_NUMBER_OF_SUITES = 4;
 
+    
+    public Blackjack(){
+    	
+    }
+  
     public int playBlackJack (String name) {
    
        
