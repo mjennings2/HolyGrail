@@ -3,7 +3,7 @@ package com.bayviewglen.something;
 public class HolyPotatoes {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		Intro intro = new Intro();
 		intro.setVisible(true);
 		intro.loop();
