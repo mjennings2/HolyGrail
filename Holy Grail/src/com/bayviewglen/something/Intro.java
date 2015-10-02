@@ -62,6 +62,14 @@ public class Intro extends JFrame {
 		contentPane.add(btnStart);
 		
 		JButton btnHowToPlay = new JButton("How To Play");
+		btnHowToPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Instructions instructions = new Instructions();
+				instructions.frame.setVisible(true);
+				
+			}
+		});
 		btnHowToPlay.setBounds(1084, 485, 123, 29);
 		contentPane.add(btnHowToPlay);
 		
