@@ -183,8 +183,27 @@ public class Main extends JFrame {
 			s[square].setPlayers(temp);
 		}
 		if(forward){
-			lblP[currentPlayer].setBounds(s[square+squares].getX(), s[square+squares].getY(), 22, 22);	
-			revalidate();
+			for(int i = s[square].getX(); i >= s[square+squares].getX(); i--){
+				lblP[currentPlayer].setBounds(i, s[square].getY(), 22, 22);	
+				revalidate();
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			for(int i = s[square].getY(); i >= s[square+squares].getY(); i--){
+				lblP[currentPlayer].setBounds(s[square+squares].getX(), i, 22, 22);		
+				revalidate();
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}else{
 			lblP[currentPlayer].setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
 			revalidate();
@@ -259,7 +278,7 @@ public class Main extends JFrame {
 			contentPane.add(lblP[i]);
 		
 		}
-		int x = 0;
+		/*int x = 0;
 		for(int i = 0; i < s.length; i++){
 			
 			
@@ -274,7 +293,7 @@ public class Main extends JFrame {
 				s[i].setIsChance(true);
 			}
 			
-		}
+		}*/
 		
 		
 		JButton btnMove = new JButton("Move");
