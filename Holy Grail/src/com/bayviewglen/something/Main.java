@@ -120,11 +120,11 @@ public class Main extends JFrame {
 		
 		for(int i = squares; i>0; i--){
 			if(forward){
-				if(s[square+i].isEnd()||s[square+i].isHub()||square+i>=s.length)				
+				if(s[square+i].isEnd()||s[square+i].isHub()||s[square-i].isEnd())				
 					squares = i;
 			}
 			else{
-				if(s[square-i].isEnd()||s[square-i].isHub()||square+i>=s.length)				
+				if(s[square-i].isEnd()||s[square-i].isHub()||s[square-i].isEnd())				
 					squares = i;
 			}
 		}
