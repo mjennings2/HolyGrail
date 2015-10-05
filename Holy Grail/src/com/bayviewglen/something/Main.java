@@ -114,35 +114,24 @@ public class Main extends JFrame {
 	}
 	
 	public void movePlayer(int squares, int square, boolean forward, Square[] s, int currentPlayer){
-		
+		Player playe = getPlayer(s, square, currentPlayer);
+				
 		boolean onShortPath = (square>BRIDGE_INT&&square<LONGPATHSTART_INT);
 		if(square==BRIDGE_INT){
-			boolean takeShortPath;	
-			takeShortPath = getShortOrNot();	
+			boolean takeShortPath = getShortOrNot();	
 			if(!takeShortPath)
 				squares=+LONGPATHSTART_INT-BRIDGE_INT;
-			/*else{
+			else{
 				Blackjack game = new Blackjack();	
 				squares=game.playBlackJack("Player " + (currentPlayer+1));
-			}*/
+			}
 		}
 		
 		if(forward&&onShortPath&&square+squares>=LONGPATHSTART_INT)
 			squares+=ENDPATHSTART_INT-LONGPATHSTART_INT;
-			
-		for(int i = squares; i>0; i--){
-			if(forward){
-				if(square+i>=s.length){
-					squares=s.length-1-square;
-				}					
-				else if(s[square+i].isEnd()||s[square+i].isHub())				
-					squares = i;
-			}
-			else{
-				if(s[square-i].isEnd()||s[square-i].isHub())				
-					squares = i;
-			}
-		}
+		
+		squares=modifySquares(forward, square, squares, s);
+		
 		
 		
 		
@@ -169,13 +158,21 @@ public class Main extends JFrame {
 		}else{
 			ArrayList<Player> temp = null;
 			if(forward){
-				if(!s[square+squares].isHub())
+				if(!s[square+squares].isHub()){
+					if(squareOccupied(s[square+squares])){
+						movePlayer(squares, square+squares, !forward ,s, s[square+squares].getPlayer().get(0).getID());
+					}
 					temp = s[square+squares].getPlayer();
 				s[square+squares].addPlayer(s[square].getPlayer().get(0));
+				}
 			}else{
-				if(!s[square-squares].isHub())
+				if(!s[square-squares].isHub()){
+					if(squareOccupied(s[square-squares])){
+						movePlayer(squares, square-squares, !forward ,s, s[square-squares].getPlayer().get(0).getID());
+					}
 					temp = s[square-squares].getPlayer();
 				s[square-squares].addPlayer(s[square].getPlayer().get(0));
+					}
 			}
 			
 			s[square].clearPlayer(0);
@@ -208,12 +205,44 @@ public class Main extends JFrame {
 			revalidate();
 		}
 		if(forward){
-			s[square+squares].getPlayer().get(0).setCurrentSquare(square + squares);
+			playe.setCurrentSquare(square + squares);
 		}else{
-			s[square-squares].getPlayer().get(0).setCurrentSquare(square - squares);
+			playe.setCurrentSquare(square - squares);
 		}
 	}
 	
+	private Player getPlayer(Square[] s, int square, int currentPlayer) {
+		if(s[square].isHub()){
+			for(int i = 0; i < s[square].getPlayer().size(); i++)
+				if(s[square].getPlayer().get(i).getID() == currentPlayer)
+			return s[square].getPlayer().get(i);
+		}
+		return s[square].getPlayer().get(0);
+	}
+
+	private boolean squareOccupied(Square square) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private int modifySquares(boolean forward, int square, int squares, Square[] s) {
+		for(int i = squares; i>0; i--){
+			if(forward){
+				if(square+i>=s.length){
+					squares=s.length-1-square;
+				}					
+				else if(s[square+i].isEnd()||s[square+i].isHub())				
+					squares = i;
+			}
+			else{
+				if(square-i>=0&&s[square-i].isHub()){			
+					squares = i;
+				}
+			}
+		}
+		return squares;
+	}
+
 	private boolean getShortOrNot() {
 		// TODO Auto-generated method stub
 		return false;
@@ -282,7 +311,7 @@ public class Main extends JFrame {
 			contentPane.add(lblP[i]);
 		
 		}
-		/*int x = 0;
+		int x = 0;
 		for(int i = 0; i < s.length; i++){
 			
 			
@@ -297,7 +326,7 @@ public class Main extends JFrame {
 				s[i].setIsChance(true);
 			}
 			
-		}*/
+		}
 		
 		
 		JButton btnMove = new JButton("Move");
