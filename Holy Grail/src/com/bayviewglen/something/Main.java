@@ -97,11 +97,7 @@ public class Main extends JFrame {
 			
 			movePlayer(numberOfSquares, p[player].getCurrentSquare(), forwardOrBackward == 1, s, player);
 			
-			if(forwardOrBackward == 1){
-				p[player].setCurrentSquare(p[player].getCurrentSquare() + numberOfSquares);
-			}else{
-				p[player].setCurrentSquare(p[player].getCurrentSquare() - numberOfSquares);
-			}
+			
 			
 			if(!(p1.getID() == p[player].getID())){
 				loop = false;
@@ -136,11 +132,14 @@ public class Main extends JFrame {
 			
 		for(int i = squares; i>0; i--){
 			if(forward){
-				if(s[square+i].isEnd()||s[square+i].isHub()||s[square+i].isEnd())				
+				if(square+i>=s.length){
+					squares=s.length-1-square;
+				}					
+				else if(s[square+i].isEnd()||s[square+i].isHub())				
 					squares = i;
 			}
 			else{
-				if(s[square-i].isEnd()||s[square-i].isHub()||s[square-i].isEnd())				
+				if(s[square-i].isEnd()||s[square-i].isHub())				
 					squares = i;
 			}
 		}
@@ -207,6 +206,11 @@ public class Main extends JFrame {
 		}else{
 			lblP[currentPlayer].setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
 			revalidate();
+		}
+		if(forward){
+			s[square+squares].getPlayer().get(0).setCurrentSquare(square + squares);
+		}else{
+			s[square-squares].getPlayer().get(0).setCurrentSquare(square - squares);
 		}
 	}
 	
