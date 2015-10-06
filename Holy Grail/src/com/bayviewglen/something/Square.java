@@ -32,10 +32,9 @@ public class Square {
 	}
 	
 	public void clearPlayer(int x){
-		if(isHub)
-			this.players.remove(x);
-		else
-			this.players.remove(0);
+		for(int i = 0; i < players.size(); i++)
+			if(players.get(i).getID() == x)
+				this.players.remove(i);
 	}
 	
 	public int getX () {

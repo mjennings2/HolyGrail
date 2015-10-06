@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Hub" key="selection"/>
+		<item value="getPlayer" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="at"/>
+			<item value="getPlayer"/>
 			<item value="hub"/>
 			<item value="chance"/>
 			<item value="rand"/>
 			<item value="-1"/>
 			<item value="&#x09;&#x09;&#x09;&#x09;s[square+squares].addPlayer(s[square].getPlayer().get(0));"/>
 			<item value="squares-square"/>
-			<item value="square-squares"/>
-			<item value="currentSquare"/>
 		</list>
 		<list key="replacehistory">
 		</list>

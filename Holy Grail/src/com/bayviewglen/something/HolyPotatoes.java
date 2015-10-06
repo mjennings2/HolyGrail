@@ -31,6 +31,7 @@ public class HolyPotatoes {
 		while(true){
 			for(int i = 0; i < p.length; i++){
 				x.waiter();
+				if(!p[i].isWinner())
 				x.oneTurn(p[i], board.squares, p);	
 				
 			}

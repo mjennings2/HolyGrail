@@ -114,7 +114,7 @@ public class Main extends JFrame {
 	}
 	
 	public void movePlayer(int squares, int square, boolean forward, Square[] s, int currentPlayer){
-		Player playe = getPlayer(s, square, currentPlayer);
+		Player playe = getTempPlayer(s, square, currentPlayer);
 				
 		boolean onShortPath = (square>BRIDGE_INT&&square<LONGPATHSTART_INT);
 		if(square==BRIDGE_INT){
@@ -138,40 +138,50 @@ public class Main extends JFrame {
 		if(s[square].isHub()){
 			ArrayList<Player> temp = null;
 			if(forward){
-				if(!s[squares+square].isHub())
+				if(!s[squares+square].isHub()){
 					temp = s[squares+square].getPlayer();
+					if(squareOccupied(s[square+squares])){
+						movePlayer(squares, square+squares, !forward ,s, s[square+squares].getPlayer().get(0).getID());
+					}					
+				}	
 				for(int i = 0; i < s[square].getPlayer().size(); i++)
 					if(s[square].getPlayer().get(i).getID() == currentPlayer)
 						s[square+squares].addPlayer(s[square].getPlayer().get(i));
 			}else{
-				if(!s[squares+square].isHub())
-					temp = s[squares+square].getPlayer();
+				if(!s[square-squares].isHub()){
+					temp = s[square-squares].getPlayer();
+					if(squareOccupied(s[square-squares])){
+						movePlayer(squares, square-squares, !forward ,s, s[square-squares].getPlayer().get(0).getID());
+					}
+				}
 				for(int i = 0; i < s[square].getPlayer().size(); i++)
 					if(s[square].getPlayer().get(i).getID() == currentPlayer)
 						s[square-squares].addPlayer(s[square].getPlayer().get(i));
 				
 			}
 			if(s[square].players.size() != 0)
-				s[square].clearPlayer(0);	
-				s[square].setPlayers(temp);
-			
+				s[square].clearPlayer(currentPlayer);				
 		}else{
 			ArrayList<Player> temp = null;
 			if(forward){
 				if(!s[square+squares].isHub()){
+					temp = s[square+squares].getPlayer();
 					if(squareOccupied(s[square+squares])){
 						movePlayer(squares, square+squares, !forward ,s, s[square+squares].getPlayer().get(0).getID());
 					}
-					temp = s[square+squares].getPlayer();
 				s[square+squares].addPlayer(s[square].getPlayer().get(0));
+				}else{
+					s[square+squares].addPlayer(s[square].getPlayer().get(0));
 				}
 			}else{
 				if(!s[square-squares].isHub()){
+					temp = s[square-squares].getPlayer();
 					if(squareOccupied(s[square-squares])){
 						movePlayer(squares, square-squares, !forward ,s, s[square-squares].getPlayer().get(0).getID());
 					}
-					temp = s[square-squares].getPlayer();
 				s[square-squares].addPlayer(s[square].getPlayer().get(0));
+					}else{
+						s[square+squares].addPlayer(s[square].getPlayer().get(0));
 					}
 			}
 			
@@ -211,7 +221,8 @@ public class Main extends JFrame {
 		}
 	}
 	
-	private Player getPlayer(Square[] s, int square, int currentPlayer) {
+	private Player getTempPlayer(Square[] s, int square, int currentPlayer) {
+		
 		if(s[square].isHub()){
 			for(int i = 0; i < s[square].getPlayer().size(); i++)
 				if(s[square].getPlayer().get(i).getID() == currentPlayer)
@@ -221,8 +232,8 @@ public class Main extends JFrame {
 	}
 
 	private boolean squareOccupied(Square square) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return square.getPlayer().size()!=0;
 	}
 
 	private int modifySquares(boolean forward, int square, int squares, Square[] s) {
@@ -235,6 +246,8 @@ public class Main extends JFrame {
 					squares = i;
 			}
 			else{
+				if(square-i<0)
+					squares=0;
 				if(square-i>=0&&s[square-i].isHub()){			
 					squares = i;
 				}

@@ -82,7 +82,7 @@ public class Board {
 		squares[70]= new Square (175,392, false, false);
 		squares[71]= new Square (150,392, false, false);
 		squares[72]= new Square (129,392, false, false);
-		squares[73]= new Square (71,392, false, true);
+		squares[73]= new Square (71,392, true, true);
 		
 
 
