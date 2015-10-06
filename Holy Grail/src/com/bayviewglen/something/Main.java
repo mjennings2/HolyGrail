@@ -79,7 +79,7 @@ public class Main extends JFrame {
 		movePlayer(i,p1.getCurrentSquare()-i, true, s, p1.getID());
 		boolean loop = true;
 		while(loop){
-		if(s[p1.getCurrentSquare()].isChance()){
+		if(s[p1.getCurrentSquare()].isChance()&&!s[p1.getCurrentSquare()].isEnd()){
 			System.out.println("Hi");
 			textArea.append("You have landed on a chance square.");
 			CurrentPlayers c = new CurrentPlayers(p);
@@ -134,59 +134,59 @@ public class Main extends JFrame {
 		
 		
 		
-		
+		if(squares!=0)
 		if(s[square].isHub()){
-			ArrayList<Player> temp = null;
+			
 			if(forward){
 				if(!s[squares+square].isHub()){
-					temp = s[squares+square].getPlayer();
+				
 					if(squareOccupied(s[square+squares])){
 						movePlayer(squares, square+squares, !forward ,s, s[square+squares].getPlayer().get(0).getID());
 					}					
 				}	
-				for(int i = 0; i < s[square].getPlayer().size(); i++)
-					if(s[square].getPlayer().get(i).getID() == currentPlayer)
-						s[square+squares].addPlayer(s[square].getPlayer().get(i));
+			
+						s[square+squares].addPlayer(playe);
 			}else{
 				if(!s[square-squares].isHub()){
-					temp = s[square-squares].getPlayer();
+			
 					if(squareOccupied(s[square-squares])){
 						movePlayer(squares, square-squares, !forward ,s, s[square-squares].getPlayer().get(0).getID());
 					}
 				}
-				for(int i = 0; i < s[square].getPlayer().size(); i++)
-					if(s[square].getPlayer().get(i).getID() == currentPlayer)
-						s[square-squares].addPlayer(s[square].getPlayer().get(i));
+						s[square-squares].addPlayer(playe);
 				
 			}
 			if(s[square].players.size() != 0)
 				s[square].clearPlayer(currentPlayer);				
 		}else{
-			ArrayList<Player> temp = null;
+			
 			if(forward){
 				if(!s[square+squares].isHub()){
-					temp = s[square+squares].getPlayer();
+				
 					if(squareOccupied(s[square+squares])){
+						
 						movePlayer(squares, square+squares, !forward ,s, s[square+squares].getPlayer().get(0).getID());
 					}
-				s[square+squares].addPlayer(s[square].getPlayer().get(0));
+				s[square+squares].addPlayer(playe);
 				}else{
-					s[square+squares].addPlayer(s[square].getPlayer().get(0));
+					s[square].clearPlayer(currentPlayer);
+					s[square+squares].addPlayer(playe);
 				}
 			}else{
 				if(!s[square-squares].isHub()){
-					temp = s[square-squares].getPlayer();
+					
 					if(squareOccupied(s[square-squares])){
+						s[square].clearPlayer(currentPlayer);
 						movePlayer(squares, square-squares, !forward ,s, s[square-squares].getPlayer().get(0).getID());
 					}
-				s[square-squares].addPlayer(s[square].getPlayer().get(0));
+				s[square-squares].addPlayer(playe);
 					}else{
-						s[square+squares].addPlayer(s[square].getPlayer().get(0));
+						s[square].clearPlayer(currentPlayer);
+						s[square-squares].addPlayer(playe);
 					}
 			}
-			
-			s[square].clearPlayer(0);
-			s[square].setPlayers(temp);
+
+		
 		}
 		if(forward){
 			for(int i = s[square].getX(); i >= s[square+squares].getX(); i--){
