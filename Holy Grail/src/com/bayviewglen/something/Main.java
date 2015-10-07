@@ -120,15 +120,19 @@ public class Main extends JFrame {
 		if(square==BRIDGE_INT){
 			boolean takeShortPath = getShortOrNot();	
 			if(!takeShortPath)
-				squares=+LONGPATHSTART_INT-BRIDGE_INT;
+				squares=+LONGPATHSTART_INT-BRIDGE_INT+1;
 			else{
 				Blackjack game = new Blackjack();	
 				squares=game.playBlackJack("Player " + (currentPlayer+1));
 			}
 		}
 		
+		
 		if(forward&&onShortPath&&square+squares>=LONGPATHSTART_INT)
 			squares+=ENDPATHSTART_INT-LONGPATHSTART_INT;
+		
+		if(!forward&&square>=LONGPATHSTART_INT&&square<ENDPATHSTART_INT&&square-squares<LONGPATHSTART_INT)
+			squares=square-BRIDGE_INT;
 		
 		squares=modifySquares(forward, square, squares, s);
 		
