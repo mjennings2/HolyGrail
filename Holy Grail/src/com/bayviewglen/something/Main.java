@@ -188,28 +188,98 @@ public class Main extends JFrame {
 
 		
 		}
+		
 		if(forward){
-			for(int i = s[square].getX(); i >= s[square+squares].getX(); i--){
-				lblP[currentPlayer].setBounds(i, s[square].getY(), 22, 22);	
-				revalidate();
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			if(square+squares <=22 || (square+squares >= 41 && square+squares <= 53) || (square+squares >= 64 && square+squares <= 71)){
+				
+				if((square >= 0 && square <= 4) || (square >= 12 && square <= 22) || (square >= 28 && square <= 31) || (square >= 49 && square <= 53) || (square >= 36 && square <= 40) || (square >= 43 && square <= 71)){
+				
+				for(int j = 1; j <= squares; j++){
+					for(int i = s[square+j-1].getX(); i >= s[square+j].getX(); i--){
+						lblP[currentPlayer].setBounds(i, s[square].getY(), 22, 22);	
+						revalidate();
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					}
+				for(int j = 1; j <= squares; j++){
+					for(int i = s[square+j-1].getY(); i >= s[square+j].getY(); i--){
+						lblP[currentPlayer].setBounds(s[square+squares].getX(), i, 22, 22);		
+						revalidate();
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				}
-			}
-			for(int i = s[square].getY(); i >= s[square+squares].getY(); i--){
-				lblP[currentPlayer].setBounds(s[square+squares].getX(), i, 22, 22);		
-				revalidate();
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 			
+				}else{
+					
+					for(int j = 1; j <= squares; j++){
+						for(int i = s[square+j-1].getY(); i >= s[square+j].getY(); i--){
+							lblP[currentPlayer].setBounds(s[square+squares].getX(), i, 22, 22);		
+							revalidate();
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+					
+					for(int j = 1; j <= squares; j++){
+						for(int i = s[square+j-1].getX(); i >= s[square+j].getX(); i--){
+							lblP[currentPlayer].setBounds(i, s[square].getY(), 22, 22);	
+							revalidate();
+							try {
+								Thread.sleep(10);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						}
+				}
+			
+			}else{
+				
+				
+				
+				
+				for(int j = 1; j <= squares; j++){
+					for(int i = s[square+j-1].getX(); i <= s[square+j].getX(); i++){
+						lblP[currentPlayer].setBounds(i, s[square].getY(), 22, 22);	
+						revalidate();
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					}
+				for(int j = 1; j <= squares; j++){
+					for(int i = s[square+j-1].getY(); i <= s[square+j].getY(); i++){
+						lblP[currentPlayer].setBounds(s[square+squares].getX(), i, 22, 22);		
+						revalidate();
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				
+				
+			}
 		}else{
 			lblP[currentPlayer].setBounds(s[square-squares].getX(), s[square-squares].getY(), 22, 22);
 			revalidate();
