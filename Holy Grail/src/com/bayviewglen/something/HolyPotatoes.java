@@ -24,7 +24,8 @@ public class HolyPotatoes {
 		
 		Board board = new Board(p);
 		
-		Main x = new Main(numberOfPlayers, p, board.squares);
+		//Main x = new Main(numberOfPlayers, p, board.squares);
+		Main x = new Main(numberOfPlayers, p, board.board);
 		x.setVisible(true);
 		
 	
@@ -32,8 +33,8 @@ public class HolyPotatoes {
 			for(int i = 0; i < p.length; i++){
 				x.waiter();
 				if(!p[i].isWinner())
-				x.oneTurn(p[i], board.squares, p);	
-				
+				//x.oneTurn(p[i], board.squares, p);	
+				x.play(p[i], board.board, p);
 			}
 			try {
 				Thread.sleep(100);

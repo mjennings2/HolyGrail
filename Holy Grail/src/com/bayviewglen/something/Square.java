@@ -2,67 +2,34 @@ package com.bayviewglen.something;
 
 import java.util.ArrayList;
 
-public class Square {
+public class Square extends Locations{
 
-	private int x;
-	private int y;
-	public ArrayList<Player> players = new ArrayList<Player>();
+	public Player player;
 	private boolean isChance;
-	private boolean isHub;
-	private boolean isEnd;
 	
-	public Square(int xCoord, int yCoord, Player[] player, boolean isHub, boolean isEnd) {
-		this.x = xCoord;
-		this.y = yCoord;
-		for(int i = 0; i < player.length; i++)
-			players.add(player[i]);
-		this.isChance = false;
-		this.isHub = isHub;
-		this.isEnd = isEnd;
-		
-	}
-	
-	public Square(int xCoord, int yCoord, boolean isHub, boolean isEnd) {
-		this.x = xCoord;
-		this.y = yCoord;
-		this.isChance = isChance;
-		this.isHub = isHub;
-		this.isEnd = isEnd;
-		
-	}
-	
-	public void clearPlayer(int x){
-		for(int i = 0; i < players.size(); i++)
-			if(players.get(i).getID() == x)
-				this.players.remove(i);
+	public Square(int xCoord, int yCoord) {
+		super(xCoord, yCoord);
 	}
 	
 	public int getX () {
-		return this.x;
+		return super.getX();
 	}
 	
 	public int getY () {
-		return this.y;
+		return super.getY();
 	}
 	
-	public void setPlayers(ArrayList<Player> plasyers){
+	public void setPlayer(Player p, Player currentPlayer){
 		
-		this.players = players;
+		this.player = null;
+		this.player = p;
 		
 	}
 	
-	public ArrayList<Player> getPlayer () {
-		return this.players;
+	public Player getPlayer () {
+		return this.player;
 	}
 	
-	public void addPlayer (Player[] player) {
-		for(int i = 0; i < player.length; i++)
-			players.add(player[i]);
-	}
-	
-	public void addPlayer (Player player) {
-		players.add(player);
-	}
 	
 	public boolean isChance () {
 		return this.isChance;
@@ -72,12 +39,17 @@ public class Square {
 		isChance = x;
 	}
 	
-	public boolean isHub () {
-		return this.isHub;
+	public void playerArriving(Player currentPlayer, int currentSquare, Locations[] board){
+		
+		if(this.player != null){
+			this.player.setCurrentSquare(currentSquare);
+		}
+		
+		board[currentSquare].setPlayer(this.player, currentPlayer);
+		this.player = currentPlayer;
+		
 	}
 	
-	public boolean isEnd () {
-		return this.isEnd;
-	}
+	
 
 }

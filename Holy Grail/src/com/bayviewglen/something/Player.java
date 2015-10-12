@@ -21,7 +21,6 @@ public class Player {
 	}
 	
 	
-	
 	public String getColourSmall() {
 		return colourSmall;
 	}
