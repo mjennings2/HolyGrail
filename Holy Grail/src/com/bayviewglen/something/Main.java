@@ -403,9 +403,16 @@ public class Main extends JFrame {
 			right = leftOrRight.getDir();
 			if(right){
 				i -= 1;
+				board[44].playerArriving(currentPlayer, 31, board);
 				currentPlayer.setCurrentSquare(44);
 				lblP[currentPlayer.getID()].setBounds(board[44].getX(), board[44].getY(), 22, 22);	
 				revalidate();	
+				
+			}else{
+				board[32].playerArriving(currentPlayer, 31, board);
+				currentPlayer.setCurrentSquare(32);
+				lblP[currentPlayer.getID()].setBounds(board[32].getX(), board[32].getY(), 22, 22);	
+				revalidate();
 			}
 		}
 		
@@ -479,7 +486,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(j, board[currentSquare+ i-1].getY(), 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -491,7 +498,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(board[currentSquare+ i].getX(), j, 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -504,7 +511,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(j, board[currentSquare+ i-1].getY(), 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -516,7 +523,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(board[currentSquare+ i].getX(), j, 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -534,12 +541,12 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 				//Find out if moving up on the screen (Y coord goes down)
 				if(board[currentSquare+i+1].getY() >= board[currentSquare+i].getY()){
 					// For every x pixel between the squares
-					for(int j = board[currentSquare + i + 1].getX(); j >= board[currentSquare + i].getX(); j--){
+					for(int j = board[currentSquare + i + 1].getX(); j <= board[currentSquare + i].getX(); j++){
 						// Move label
 						lblP[id].setBounds(j, board[currentSquare+i+1].getY(), 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -551,7 +558,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(board[currentSquare + i].getX(), j, 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -559,12 +566,12 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 					}
 				}else{
 					// For every x pixel between the squares
-					for(int j = board[currentSquare + i + 1].getX(); j >= board[currentSquare + i].getX(); j--){
+					for(int j = board[currentSquare + i + 1].getX(); j <= board[currentSquare + i].getX(); j++){
 						// Move label
 						lblP[id].setBounds(j, board[currentSquare + i + 1].getY(), 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -576,7 +583,7 @@ private void animate(int id, int currentSquare, int squaresToMove, Locations[] b
 						lblP[id].setBounds(board[currentSquare + i].getX(), j, 22, 22);	
 						revalidate();
 						try {
-							Thread.sleep(10);
+							Thread.sleep(3);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

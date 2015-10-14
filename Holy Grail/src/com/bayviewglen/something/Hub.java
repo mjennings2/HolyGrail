@@ -70,6 +70,8 @@ public class Hub extends Locations{
 	public void playerArriving(Player currentPlayer, int currentSquare, Locations[] board){
 		
 		players.add(currentPlayer);
+		board[currentSquare].setPlayer(null, currentPlayer);
+		
 		
 	}
 	
